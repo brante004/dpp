@@ -1,6 +1,19 @@
 #1: this code does not run!  try it and examine the errors, then figure out what needs to
 #be changed to make it work
 
+#original problem
+a = 10
+def first_func(b=20):
+    c = 30
+    value = second_func()
+    return value
+def second_func(d=40):
+    e = 50
+    return a + b + c + d + e
+
+result = first_func()
+
+#my way of doing it
 a = 10
 
 def first_func(b=20):
@@ -10,6 +23,20 @@ def first_func(b=20):
         return a + b + c + d +e
     value = second_func()
     return value
+#nested functions are not favorable
+
+result = first_func()
+print(result)
+
+#below is the solution. the best way to do it is to pass the value
+a = 10
+def first_func(b=20):
+    c = 30
+    value = second_func(b, c)
+    return value
+def second_func(b, c, d=40):
+    e = 50
+    return a + b + c + d + e
 
 result = first_func()
 print(result)
