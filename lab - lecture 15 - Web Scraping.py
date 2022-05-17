@@ -24,14 +24,23 @@ data
 # 3. Create a new dataframe from the base data from part 1 that resamples
 # the data to quarterly, using the mean value.
 
-data = data.reset_index()
-data.info()
-data['index'] = pd.to_datetime(data['index'])
-data_rs = data.set_index('index').resample('Q')[['close']].mean()
-data_rs.describe
-data_rs.info()
+data.index = pd.to_datetime(data.index)
+data_rs = data.resample('Q')[['close']].mean()
+data_rs
+
 # 4. Create a figure showing the time series for the monthly level and
 # the monthly rolling average together.
 
+data_rs.info()
+data_rs.index
+data.index
+
 fig, ax = plt.subplots()
-ax.plot = (x=)
+ax.plot(data.index, data['close'])
+
+ax2 = ax.twinx()
+ax.plot(data_rs.index, data_rs['close'])
+
+ax.legend(loc='best')
+
+fig.show()
